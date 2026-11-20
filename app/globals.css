@@ -1,0 +1,124 @@
+@import "tailwindcss";
+:root { --purple: #44236b; --lavender: #9170bc; --light: #c9b3e5; --pale: #ede3f5; --ivory: #fbf8fd; }
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--ivory); }
+body { margin: 0; color: var(--purple); font-family: var(--font-serif), Georgia, serif; font-size: 18px; -webkit-font-smoothing: antialiased; }
+button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+button { font: inherit; cursor: pointer; }
+button:disabled { cursor: default; }
+a { text-decoration: none; color: inherit; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--purple); outline-offset: 6px; }
+.invitation-shell { position: relative; isolation: isolate; min-height: 100svh; overflow: clip; background: radial-gradient(ellipse at 50% 42%, #fffdfd, #faf7fc 62%, #f0e9f5); }
+.watercolor-wash { position: fixed; inset: 0; z-index: -4; pointer-events: none; background: radial-gradient(ellipse at 0% 0%, #c9b3e530, transparent 45%), radial-gradient(ellipse at 100% 90%, #c4a8e128, transparent 43%); }
+.botanical { position: fixed; width: clamp(220px, 28vw, 440px); z-index: -1; pointer-events: none; opacity: .65; }
+.botanical img { display: block; width: 100%; height: auto; }
+.botanical-top { top: -26px; left: -50px; }
+.botanical-bottom { right: -45px; bottom: -40px; transform: rotate(180deg); }
+.paper-grain { position: fixed; inset: 0; z-index: 8; pointer-events: none; opacity: .11; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239170bc' opacity='.45' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+.invitation-frame { position: absolute; inset: 22px max(5px, calc((100% - 580px) / 2)); pointer-events: none; z-index: 1; }
+.invitation-frame svg { width: 100%; height: 100%; overflow: visible; }
+.invitation-frame path { stroke: #967aac; stroke-width: 1; opacity: .55; }
+.invitation-frame path + path { opacity: .28; stroke-width: .7; }
+.scene { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100svh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 65px 25px 100px; }
+.eyebrow { font-family: var(--font-display), Georgia, serif; font-size: 12px; font-weight: 400; letter-spacing: .2em; line-height: 1.9; text-transform: uppercase; margin: 0; }
+.monogram { position: relative; width: 170px; height: 170px; display: grid; place-items: center; }
+.couple-logo { display: block; width: 68%; height: 80%; object-fit: contain; }
+.with-wreath { width: 300px; height: 300px; }
+.with-wreath .couple-logo { width: 48%; height: 57%; }
+.final-monogram .couple-logo { width: 78%; height: 100%; }
+.wreath { position: absolute; inset: 0; width: 100%; height: 100%; }
+.botanical-wreath { object-fit: contain; filter: drop-shadow(0 1px 1px #52624a10); }
+.logo-reveal { position: relative; width: 320px; height: 320px; display: grid; place-items: center; }
+.scene-tap-target { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; color: var(--purple); }
+.scene-tap-target:focus-visible { outline-offset: -24px; outline-color: #9170bc65; }
+.continue-prompt { position: absolute; bottom: max(70px, 10svh); left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; gap: 13px; min-width: 154px; min-height: 44px; padding: 9px 22px; border: 1px solid #b6a1c28c; border-radius: 40px; background: #fffdfbb5; font-size: 16px; letter-spacing: .04em; white-space: nowrap; color: #77558e; box-shadow: 0 3px 10px #72519707; }
+.continue-prompt svg { animation: nudge 3s ease-in-out infinite; }
+.names-content { padding-bottom: 15px; }
+.name-flourish { font-size: 27px; color: #a289b7; margin-bottom: 18px; }
+.couple-names { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; gap: 0; font-family: var(--font-names), var(--font-serif), serif; font-style: normal; font-weight: 400; font-size: clamp(42px, 11vw, 68px); letter-spacing: 0; line-height: 1.6; white-space: nowrap; }
+/* Agetya's demo has no ampersand; use the matching italic serif explicitly. */
+.couple-names em { color: #a387bd; font-family: var(--font-serif), Georgia, serif; font-style: italic; font-weight: 400; font-size: .8em; line-height: 1; margin: .38em 0 .55em; align-self: center; text-align: center; position: relative; top: .32em; }
+.rings-divider { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 23px auto; }
+.rings-divider span { width: 58px; height: 1px; background: linear-gradient(90deg, transparent, #b69bcb); }
+.rings-divider span:last-child { transform: rotate(180deg); }
+.rings-divider svg { width: 49px; height: 30px; stroke: #9876b4; stroke-width: 1; }
+.music-control { position: fixed; z-index: 12; top: 25px; right: 25px; }
+.music-button { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid #bba4cf80; background: #fbf8fdc9; border-radius: 50%; color: #6c478d; backdrop-filter: blur(10px); transition: background .2s; }
+.music-button:hover { background: #ede3f5; }
+.audio-notice { position: absolute; right: 0; top: 50px; width: 200px; padding: 10px; background: var(--ivory); border: 1px solid var(--light); font-size: 16px; }
+/* Embossed paper doors. The seal is attached to the left-hand panel. */
+.gatefold-scene { z-index: 5; padding: 0; overflow: hidden; }
+.gatefold-doors { position: absolute; inset: 0; perspective: 1800px; pointer-events: none; }
+.gatefold-door { position: absolute; top: 0; width: 50%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; will-change: transform; }
+.gatefold-left { left: 0; z-index: 3; transform-origin: left center; background: linear-gradient(100deg, #f6f2f8, #f1eaf5 93%, #e0d4e7); border-right: 1px solid #ab94ba; box-shadow: inset -3px 0 4px #67457b0d, 3px 0 8px #4e335817; }
+.gatefold-right { right: 0; z-index: 2; transform-origin: right center; background: linear-gradient(260deg, #faf6fb, #f7f1f9 93%, #eae0f0); border-left: 1px solid #ffffffed; box-shadow: inset 3px 0 4px #fff6; }
+.gatefold-art { position: absolute; inset: 0; overflow: hidden; }
+.gatefold-botanical { position: absolute; width: clamp(280px, 38vw, 620px); max-width: none; opacity: .95; }
+.gatefold-left .gatefold-botanical { top: -30px; left: -30px; }
+.gatefold-left .secondary-botanical { top: auto; bottom: -45px; left: -60px; transform: scaleY(-1); width: clamp(235px, 30vw, 480px); opacity: .8; }
+.gatefold-right .gatefold-botanical { bottom: -30px; right: -30px; transform: rotate(180deg); }
+.gatefold-right .secondary-botanical { bottom: auto; top: -45px; right: -60px; transform: scaleX(-1); width: clamp(235px, 30vw, 480px); opacity: .8; }
+.gatefold-heading { position: absolute; z-index: 4; bottom: 20%; left: 20px; right: 20px; pointer-events: none; }
+.gatefold-heading h1 { font-family: var(--font-names), var(--font-serif), serif; font-size: clamp(20px, 5.7vw, 34px); font-style: normal; font-weight: 400; line-height: 1.7; margin: 0; }
+.gatefold-open { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; padding: 0; border: 0; background: transparent; color: var(--purple); }
+.gatefold-open:focus-visible { outline-offset: -22px; outline-color: #9170bc80; }
+.gatefold-seal { position: absolute; z-index: 6; top: 50%; left: 100%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 100px; height: 126px; filter: drop-shadow(2px 5px 4px #49345536); }
+.wax-seal-texture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
+.stamp-inner { display: grid; place-items: center; position: relative; width: 82%; height: 82%; }
+.stamp-inner img { height: 67%; width: 52%; object-fit: contain; opacity: .85; mix-blend-mode: multiply; filter: drop-shadow(0 1px 0 #ead8f065); }
+.gatefold-instruction { position: absolute; bottom: 13%; left: 15px; right: 15px; font-size: 16px; letter-spacing: .05em; color: #72518b; }
+.gatefold-footer { position: absolute; z-index: 4; bottom: 35px; left: 0; width: 100%; pointer-events: none; font-size: 13px; font-style: italic; letter-spacing: .035em; color: #8d779d; }
+.gatefold-is-opening .gatefold-heading, .gatefold-is-opening .gatefold-instruction, .gatefold-is-opening .gatefold-footer { animation: text-away .3s ease forwards; }
+.gatefold-is-opening .gatefold-left { animation: door-left-open 2.35s .3s cubic-bezier(.42,0,.58,1) forwards; }
+.gatefold-is-opening .gatefold-right { animation: door-right-open 2.35s .3s cubic-bezier(.42,0,.58,1) forwards; }
+.petals { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+.petal { position: absolute; animation: falling linear infinite; will-change: transform; }
+.petal img { display: block; width: 100%; height: 100%; object-fit: contain; animation: flutter var(--flutter-duration) ease-in-out infinite alternate; }
+.petal-1 { filter: blur(.7px); }.petal-3 { filter: blur(.35px); }
+.is-hidden *, .is-hidden *::after { animation-play-state: paused !important; }
+.final-invitation { position: relative; max-width: 500px; margin: 0 auto; padding: 55px 35px 55px; text-align: center; min-height: 100svh; }
+.final-monogram { display: flex; justify-content: center; margin: 0 auto 10px; }.final-monogram .monogram { width: 93px; height: 93px; }
+.families { font-size: 11px; letter-spacing: .17em; margin-bottom: 16px; }.final-names { font-size: 64px; }.final-heading:focus { outline: none; }
+.invitation-message { margin-top: 18px; font-size: 11px; letter-spacing: .145em; line-height: 1.9; }.final-invitation .rings-divider { margin: 19px auto 15px; }
+.event-details { max-width: 350px; margin: 0 auto; text-align: left; }.event-row { padding: 13px 7px; display: flex; gap: 22px; align-items: center; border-bottom: 1px solid #b89ace43; }.event-row:last-child { border-bottom: 0; }.event-row > svg { width: 21px; height: 21px; stroke-width: 1.25; color: #8965aa; flex-shrink: 0; }.detail-label { display: block; font-family: var(--font-display), Georgia, serif; text-transform: uppercase; font-size: 10px; letter-spacing: .18em; color: #795493; margin-bottom: 3px; }.event-row p { font-size: 20px; line-height: 1.25; margin: 0; font-weight: 500; }.timezone-label { font-size: 15px; color: #775d89; font-weight: 400; }
+.countdown-section { margin-top: 23px; }.countdown-section > .eyebrow { font-size: 10px; letter-spacing: .18em; margin-bottom: 12px; }.countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 350px; margin: auto; }.countdown-card { background: #fbf8fdb5; border: 1px solid #c9b3e570; border-radius: 11px; padding: 11px 3px 10px; box-shadow: 0 4px 13px #72519708; display: flex; flex-direction: column; align-items: center; overflow: hidden; }.countdown-number { display: block; font-variant-numeric: tabular-nums; font-size: 34px; font-weight: 400; line-height: 1; }.countdown-label { text-transform: uppercase; letter-spacing: .08em; font-size: 10px; margin-top: 7px; color: #74588b; font-family: var(--font-display), Georgia, serif; }.special-day { font-style: italic; font-size: 30px; margin: 20px 0; }
+.invitation-actions { display: flex; flex-direction: column; gap: 11px; max-width: 350px; margin: 23px auto 0; }.action { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 49px; width: 100%; border-radius: 9px; font-size: 18px; letter-spacing: .025em; transition: box-shadow .25s, background .25s; padding: 11px 14px; }.primary { color: #fff; background: linear-gradient(110deg, #7c559e, #543076); border: 1px solid #745094; box-shadow: 0 5px 16px #673e8c15; }.primary:hover { box-shadow: 0 6px 22px #673e8c35; }.secondary { color: #69458a; background: #fbf8fdb5; border: 1px solid #ac8fc580; }.secondary:hover { background: #eee2f6; }
+.final-footer { margin-top: 24px; display: flex; flex-direction: column; align-items: center; color: #8c6aa7; }.final-footer p { margin: 8px 0 17px; font-style: italic; font-size: 17px; }.replay-button { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; font-size: 12px; letter-spacing: .04em; border: 0; background: none; color: #7d618f; }
+.calendar-dialog { position: fixed; inset: 0; margin: auto; width: min(420px, calc(100vw - 36px)); border: 1px solid #b99bd1; border-radius: 20px; padding: 0; background: #fbf8fd; color: var(--purple); box-shadow: 0 25px 100px #44236b30; }.calendar-dialog::backdrop { background: #39204e55; backdrop-filter: blur(6px); }.calendar-dialog-inner { padding: 35px 24px 25px; text-align: center; display: flex; flex-direction: column; align-items: center; }.dialog-close { position: absolute; top: 8px; right: 8px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; background: transparent; color: var(--purple); }.calendar-dialog h2 { font-size: 34px; font-weight: 400; font-style: italic; margin: 14px 0 5px; }.calendar-dialog p { font-size: 18px; line-height: 1.45; margin: 6px 0 23px; }.calendar-dialog .action { margin-bottom: 10px; font-size: 17px; }.calendar-dialog .calendar-note { color: #7d608f; font-size: 14px; margin: 9px 0 0; }
+/* Keep the event sheet compact while the introductory names stay stacked. */
+.final-invitation { z-index: 2; padding: 75px 40px 65px; }
+.final-names { flex-direction: row; align-items: baseline; gap: .2em; font-size: clamp(24px, 7.2vw, 42px); line-height: 1.7; }
+.final-names em { font-size: .7em; line-height: inherit; margin: 0; align-self: auto; top: 0; }
+@keyframes door-left-open { to { transform: rotateY(-95deg); } }
+@keyframes door-right-open { to { transform: rotateY(95deg); } }
+@keyframes text-away { to { opacity: 0; } }
+@keyframes falling { from { transform: translate3d(0,-5vh,0) rotate(0); } to { transform: translate3d(var(--drift),140vh,0) rotate(var(--rotation)); } }
+@keyframes flutter { from { transform: rotateY(-35deg) rotate(-14deg); } to { transform: rotateY(40deg) rotate(20deg); } }
+@keyframes nudge { 0%,100% { transform: translateY(0); opacity: .55; } 50% { transform: translateY(3px); opacity: 1; } }
+@media(max-width: 600px) {
+ .invitation-frame { inset: 13px -12px; }
+ .botanical-top { width: 215px; top: -30px; left: -55px; }.botanical-bottom { width: 215px; right: -55px; bottom: -30px; }
+ .music-control { top: 22px; right: 20px; }.music-button { width: 36px; height: 36px; }
+ .gatefold-seal { width: 88px; height: 112px; }
+ .final-invitation { padding: 68px 36px 55px; }.final-monogram .monogram { width: 83px; height: 83px; }
+ .families { font-size: 10px; letter-spacing: .12em; margin-bottom: 15px; }.invitation-message { font-size: 10px; letter-spacing: .09em; }
+ .event-row { gap: 16px; padding: 13px 3px; }.event-row p { font-size: 19px; }.timezone-label { font-size: 14px; }
+ .countdown { gap: 7px; }.countdown-number { font-size: 31px; }.countdown-label { font-size: 9px; letter-spacing: .04em; }
+ .final-footer { margin-top: 23px; }.final-footer p { font-size: 16px; }
+}
+@media(max-width: 350px) {
+ .final-invitation { padding-left: 28px; padding-right: 28px; }.event-row { gap: 11px; }.event-row p { font-size: 17px; }.countdown-label { font-size: 8px; }.action { font-size: 17px; }
+ .logo-reveal { width: 280px; height: 280px; }.with-wreath { width: 270px; height: 270px; }
+ .couple-names:not(.final-names) { font-size: 38px; }.name-flourish { margin-bottom: 8px; }
+ .continue-prompt { bottom: 55px; }
+}
+@media(max-height: 600px) {
+ .scene { padding-top: 55px; padding-bottom: 95px; }.logo-reveal, .with-wreath { width: 240px; height: 240px; }
+ .couple-names:not(.final-names) { font-size: 36px; }.name-flourish { margin-bottom: 0; font-size: 20px; }.names-content .rings-divider { margin: 13px auto; }
+ .gatefold-heading { bottom: 20%; }.gatefold-heading h1 { font-size: 20px; }.gatefold-instruction { bottom: 12%; font-size: 15px; }.gatefold-footer { bottom: 20px; }
+}
+@media(prefers-reduced-motion: reduce) {
+ *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+ .petals { display: none; }
+ .gatefold-is-opening .gatefold-door, .gatefold-is-opening .gatefold-heading, .gatefold-is-opening .gatefold-instruction, .gatefold-is-opening .gatefold-footer { opacity: 0; }
+}
